@@ -1,0 +1,5 @@
+#orange{color: orange}
+span{color: blue}
+.green{color: green}
+.green:hover{color: #ffff00; cursor: progress}
+

@@ -1,14 +1,75 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title>Turma da Fatec</title>
-    </head>
-    <body>
-        <h1>Página de Exemplo</h1>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Turma da Fatec</title>
+    <style type="text/css">
+        span{color: red; font-weight: bold;}
+    </style>
+    <link rel="stylesheet" href="/static/css/exemplo.css" />
+</head>
+<body>
+<h1 class="green" >Página de Exemplo</h1>
 
-        <div>Div 1</div>
-        <div>Div 2</div>
-        <p>Paragrafo</p>
-    </body>
+<div class="green blue">Div 1</div>
+<div>Div 2</div>
+<p>Paragrafo
+
+    <span id="orange" class="green">Texto na cor Laranja</span>
+
+    <a href="/login" target="_blank"><img src="/static/img/ajax.gif"/></a>
+    <a href="/login" target="_blank">Google</a>
+    <span>Texto na cor Vermelha</span>
+    <a href="#secao">Seção</a>
+    <br/>
+    <br/>
+
+<form action="#" method="get">
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+        Nome <input type="text" name="nome" value="Renzo"/>
+        Sobrenome <input type="text" name="nome" placeholder="Digite seu último sobrenome"/>
+    </fieldset>
+    <select name="estado">
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="SP" selected="selected">São Paulo</option>
+    </select>
+    Sexo:
+    <input type="radio" name="sexo" value="M"/> Masculino
+    <input type="radio" name="sexo" value="F"/> Feminino
+    <br/>
+    Sobremesas
+    <input type="checkbox" name="sobremesa" value="doce-leite"/>Doce de Leite
+    <input type="checkbox" name="sobremesa" value="pacoca"/>Paçoca
+    <br/>
+    <button type="submit">Enviar</button>
+</form>
+
+<table border="1px">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Renzo</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Jon Doe</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<h1 id="secao">Seção do documento</h1>
+sdfsdfsdf</p>
+
+</body>
 </html>
