@@ -1,0 +1,19 @@
+{% extends 'filmes/base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Exemplo de formulário</h1>
+                <form action="{{ salvar_path }}" method="post">
+                    {{ csrf_input() }}
+                    {{form_input('Nome','name','','')}}
+                    {{form_input('Idade','age','','')}}
+                    {{form_input('Nascimento','birth','','')}}
+                    {{form_input('Preço','price','','')}}
+                    {{form_input('Criação','creation','','')}}
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
