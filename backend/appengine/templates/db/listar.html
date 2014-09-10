@@ -1,0 +1,42 @@
+{% extends 'filmes/base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Lista de Escravos</h1>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Nascimento</th>
+                        <th>Preço</th>
+                        <th>Criação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for e in escravos %}
+                        <tr>
+                            <td><a href="{{ e.edit_path }}" class="btn btn-success"><i
+                                    class="glyphicon glyphicon-pencil"></i></a></td>
+                            <td>{{ e.id }}</td>
+                            <td>{{ e.name }}</td>
+                            <td>{{ e.birth }}</td>
+                            <td>{{ e.price }}</td>
+                            <td>{{ e.creation }}</td>
+                            <td><form action="{{ e.delete_path }}" method="post">
+                                {{ csrf_input() }}
+                                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
