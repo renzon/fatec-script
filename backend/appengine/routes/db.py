@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
+import json
 from google.appengine.ext import ndb
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
@@ -7,6 +8,7 @@ from gaeforms import base
 from gaeforms.base import EmailField
 from gaeforms.ndb.form import ModelForm
 from tekton import router
+from tekton.gae.middleware.json_middleware import JsonResponse, JsonUnsecureResponse
 from tekton.gae.middleware.redirect import RedirectResponse
 
 
@@ -17,36 +19,51 @@ def listar():
     form_short = EscravoFormShort()
     escravos = [form_short.fill_with_model(e) for e in escravos]
     for e in escravos:
-        e['edit_path']=router.to_path(edit_form,e['id'])
-        e['delete_path']=router.to_path(deletar,e['id'])
+        e['edit_path'] = router.to_path(edit_form, e['id'])
+        e['delete_path'] = router.to_path(deletar, e['id'])
     contexto = {'escravos': escravos}
     return TemplateResponse(contexto)
 
+
+@no_csrf
+def listar_json(_resp):
+    query = Escravo.query().order(-Escravo.name)
+    escravos = query.fetch()
+    form_short = EscravoFormShort()
+    escravos = [form_short.fill_with_model(e) for e in escravos]
+    for e in escravos:
+        e['edit_path'] = router.to_path(edit_form, e['id'])
+        e['delete_path'] = router.to_path(deletar, e['id'])
+
+    return JsonUnsecureResponse(escravos)
+
+
 def deletar(escravo_id):
-    key=ndb.Key(Escravo,int(escravo_id))
+    key = ndb.Key(Escravo, int(escravo_id))
     key.delete()
     return RedirectResponse(router.to_path(listar))
 
 
 @no_csrf
 def edit_form(escravo_id):
-    escravo=Escravo.get_by_id(int(escravo_id))
-    escravo_form=EscravoForm()
+    escravo = Escravo.get_by_id(int(escravo_id))
+    escravo_form = EscravoForm()
     escravo_form.fill_with_model(escravo)
-    contexto = {'salvar_path': router.to_path(editar,escravo_id),
+    contexto = {'salvar_path': router.to_path(editar, escravo_id),
                 'escravo': escravo_form}
     return TemplateResponse(contexto, 'db/home.html')
 
-def editar(escravo_id,**kwargs):
+
+def editar(escravo_id, **kwargs):
     escravo_form = EscravoForm(**kwargs)
     erros = escravo_form.validate()
     if erros:
-        contexto = {'salvar_path': router.to_path(editar,escravo_id),
+        contexto = {'salvar_path': router.to_path(editar, escravo_id),
                     'erros': erros,
                     'escravo': kwargs}
         return TemplateResponse(contexto, 'db/home.html')
     else:
-        escravo=Escravo.get_by_id(int(escravo_id))
+        escravo = Escravo.get_by_id(int(escravo_id))
         escravo_form.fill_model(escravo)
         escravo.put()
         return RedirectResponse(router.to_path(listar))
