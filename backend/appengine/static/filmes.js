@@ -3,15 +3,11 @@
  */
 
 $(document).ready(function(){
-    $('button').click(function(){
-       console.log('Hello World');
+    var $filmeForm = $('#filme-form');
+    $filmeForm.hide();
+    $('#mostrar-form-btn').click(function(){
+        $filmeForm.slideToggle();
     });
 
-    $('.bt').click(function(evento){
-        console.log(evento);
-    });
 
-    $('#bt2').click(function(evento){
-        console.log('id');
-    });
 });

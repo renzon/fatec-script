@@ -7,11 +7,32 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>{% trans %}This is a generic home for filme_app {% endtrans %}  </h1>
-                <button class="bt" >Botão 1</button>
-                <button id="bt2" >Botão 2</button>
-                <a href="#" class="bt" >link</a>
-                <a href="{{ new_path }}" class="btn btn-success">{% trans %}Create New Filme{% endtrans %}</a>
+                <button id="mostrar-form-btn" class="btn btn-success">{% trans %}Create New Filme{% endtrans %}</button>
                 <hr/>
+                <div id="filme-form" class="well">
+                    <h1 class="text-center">Filme Form</h1>
+
+                    <form action="/filmes/admin/new/save" method="post" role="form">
+                        <input type="hidden" value="04dacef8c8ee6d7a4dc582034ad5db5e" name="_csrf_code">
+
+                        <div class="form-group ">
+                            <label for="tituloInput" class="control-label">Titulo </label>
+                            <input id="tituloInput" type="text" class="form-control" name="titulo" value="">
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="precoInput" class="control-label">Preco </label>
+                            <input id="precoInput" type="text" class="form-control" name="preco" value="">
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="dataInput" class="control-label">Data </label>
+                            <input id="dataInput" type="text" class="form-control" name="data" value="">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </form>
+                </div>
                 <h2>{% trans %}List of Filmes{% endtrans %}</h2>
                 <table class="table table-striped table-hover">
                     <thead>
@@ -35,7 +56,8 @@
                             <td>{{ filme.preco }}</td>
                             <td>{{ filme.data }}</td>
                             <td>
-                                <form action="{{ filme.delete_path }}" method="post" onsubmit="return confirm('{{_('Are you sure to delete? Press cancel to avoid deletion.')}}');">
+                                <form action="{{ filme.delete_path }}" method="post"
+                                      onsubmit="return confirm('{{ _('Are you sure to delete? Press cancel to avoid deletion.') }}');">
                                     {{ csrf_input() }}
                                     <button class="btn btn-danger btn-sm"><i
                                             class="glyphicon glyphicon-trash"></i></button>
