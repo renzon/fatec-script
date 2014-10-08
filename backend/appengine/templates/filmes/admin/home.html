@@ -1,9 +1,15 @@
 {% extends 'filmes/base.html' %}
+{% block js %}
+    <script type="text/javascript" src="/static/filmes.js"></script>
+{% endblock %}
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>{% trans %}This is a generic home for filme_app {% endtrans %}  </h1>
+                <button class="bt" >Botão 1</button>
+                <button id="bt2" >Botão 2</button>
+                <a href="#" class="bt" >link</a>
                 <a href="{{ new_path }}" class="btn btn-success">{% trans %}Create New Filme{% endtrans %}</a>
                 <hr/>
                 <h2>{% trans %}List of Filmes{% endtrans %}</h2>

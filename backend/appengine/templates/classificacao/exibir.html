@@ -1,10 +1,13 @@
 {% extends 'base/base.html' %}
+{% block js %}
+<script type="text/javascript" src="/static/introducao.js"></script>
+{% endblock %}
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center">Classificação da categoria {{ categoria.nome }}</h1>
-
+                <button onclick="mostrarEventoDeMouse(event)">Imprimir</button>
                 <ol>
                     {% for p in lista_de_pilotos %}
                         <li>{{ p.nome }} - <strong>Pontuação</strong> {{ p.pontuacao }}</li>
@@ -24,4 +27,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
