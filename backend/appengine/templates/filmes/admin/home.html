@@ -12,12 +12,13 @@
                 <div id="filme-form" class="well">
                     <h1 class="text-center">Filme Form</h1>
 
-                    <form action="/filmes/admin/new/save" method="post" role="form">
+                    <div role="form">
                         <input type="hidden" value="04dacef8c8ee6d7a4dc582034ad5db5e" name="_csrf_code">
 
-                        <div class="form-group ">
+                        <div id="tituloDiv" class="form-group">
                             <label for="tituloInput" class="control-label">Titulo </label>
                             <input id="tituloInput" type="text" class="form-control" name="titulo" value="">
+                            <span class="help-block">Qualquer</span>
                         </div>
 
                         <div class="form-group ">
@@ -30,8 +31,9 @@
                             <input id="dataInput" type="text" class="form-control" name="data" value="">
                         </div>
 
-                        <button type="submit" class="btn btn-success">Salvar</button>
-                    </form>
+                        <button id="salvar-btn" class="btn btn-success">Salvar</button>
+                        <img id="ajax-gif" src="/static/img/ajax.gif" />
+                    </div>
                 </div>
                 <h2>{% trans %}List of Filmes{% endtrans %}</h2>
                 <table class="table table-striped table-hover">
