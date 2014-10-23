@@ -18,7 +18,7 @@
                         <div id="tituloDiv" class="form-group">
                             <label for="tituloInput" class="control-label">Titulo </label>
                             <input id="tituloInput" type="text" class="form-control" name="titulo" value="">
-                            <span class="help-block">Qualquer</span>
+                            <span id="help-titulo" class="help-block"></span>
                         </div>
 
                         <div class="form-group ">
@@ -39,21 +39,14 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th/>
-                        <th>{% trans %}Id{% endtrans %}</th>
-                        <th>{% trans %}Creation{% endtrans %}</th>
                         <th>{% trans %}Titulo{% endtrans %}</th>
                         <th>{% trans %}Preco{% endtrans %}</th>
                         <th>{% trans %}Data{% endtrans %}</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="corpo-tabela">
                     {% for filme in filmes %}
                         <tr>
-                            <td><a href="{{ filme.edit_path }}" class="btn btn-success btn-sm"><i
-                                    class="glyphicon glyphicon-pencil"></i></a></td>
-                            <td>{{ filme.id }}</td>
-                            <td>{{ filme.creation }}</td>
                             <td>{{ filme.titulo }}</td>
                             <td>{{ filme.preco }}</td>
                             <td>{{ filme.data }}</td>
