@@ -13,10 +13,9 @@ $(document).ready(function () {
     var $tituloInput = $('#tituloInput');
     var $precoInput = $('#precoInput');
     var $dataInput = $('#dataInput');
-    $tituloInput.val('Sonho de Liberdade');
-    var $ajaxGif=$('#ajax-gif');
+    var $ajaxGif = $('#ajax-gif');
 
-    var $tituloDiv=$('#tituloDiv');
+    var $tituloDiv = $('#tituloDiv');
 
     $ajaxGif.hide();
     var $salvarBtn = $('#salvar-btn');
@@ -27,21 +26,21 @@ $(document).ready(function () {
 
         $ajaxGif.slideDown();
         $salvarBtn.hide();
-        var promessa=$.post('/filmes/rest/save',filme);
-        promessa.success(function(filme_do_servidor){
+        var promessa = $.post('/filmes/rest/save', filme);
+        promessa.success(function (filme_do_servidor) {
             console.log(filme_do_servidor);
         });
 
 
-
-        promessa.error(function(erros){
+        promessa.error(function (erros) {
             console.log(erros);
-            if (erros.titulo!=null){
-                $tituloDiv.addClass('has-errors');
+            if (erros.responseJSON != null && erros.responseJSON.titulo != null) {
+
+                $tituloDiv.addClass('has-error');
             }
         });
 
-        promessa.always(function(){
+        promessa.always(function () {
             $ajaxGif.slideUp();
             $salvarBtn.slideDown();
         })
