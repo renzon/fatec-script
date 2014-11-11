@@ -44,5 +44,5 @@ def _save_or_update_json_response(_resp, cmd):
         _resp.status_code = 500
         return JsonUnsecureResponse(cmd.errors)
     short_form = facade.filme_short_form()
-    return JsonUnsecureResponse(short_form.fill_with_model(filme))
+    return JsonResponse(short_form.fill_with_model(filme))
 

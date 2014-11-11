@@ -1,12 +1,42 @@
 {% extends 'filmes/base.html' %}
+{% block js %}
+    <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/filme/js/filme.js"></script>
+    <script type="text/javascript">
+
+    var filmeServico = angular.module('filme-servico', []);
+
+    filmeServico.factory('FilmeAPI',function($http){
+       return {
+           salvar:function(filme){
+               return $http.post('{{ salvar_path }}',filme);
+           }
+       }
+    });
+
+        function FilmeControlador($scope) {
+            $scope.mostrarFormFlag = false;
+
+            $scope.mostrarOuEsconderForm=function(){
+                $scope.mostrarFormFlag=!$scope.mostrarFormFlag;
+            }
+
+        }
+
+    </script>
+{% endblock %}
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" ng-app="filme-modulo" ng-controller="FilmeControlador">
+
                 <h1>{% trans %}This is a generic home for filme_app {% endtrans %}  </h1>
-                {% if _logged_user and ('ADMIN' in _logged_user.groups) %}
-                <a href="{{ admin_path }}" class="btn btn-success">{% trans %}Admin{% endtrans %}</a>
-                {% endif %}
+                <button class="btn btn-success" ng-click="mostrarOuEsconderForm()">Criar Novo Filme</button>
+
+                <div>
+                    <filme-form ng-show="mostrarFormFlag"></filme-form>
+                    <filme-form ng-show="mostrarFormFlag"></filme-form>
+                </div>
                 <hr/>
                 <h2>{% trans %}List of Filmes{% endtrans %}</h2>
                 <table class="table table-striped table-hover">

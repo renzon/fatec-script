@@ -5,7 +5,7 @@ from tekton import router
 from gaecookie.decorator import no_csrf
 from gaepermission.decorator import login_not_required
 from filme_app import facade
-from routes.filmes import admin
+from routes.filmes import admin, rest
 
 
 @login_not_required
@@ -15,6 +15,7 @@ def index():
     filmes = cmd()
     public_form = facade.filme_public_form()
     filme_public_dcts = [public_form.fill_with_model(filme) for filme in filmes]
-    context = {'filmes': filme_public_dcts,'admin_path':router.to_path(admin)}
+    context = {'filmes': filme_public_dcts,'admin_path':router.to_path(admin),
+               'salvar_path':router.to_path(rest.save)}
     return TemplateResponse(context)
 
