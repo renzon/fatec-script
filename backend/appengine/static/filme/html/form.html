@@ -2,20 +2,23 @@
     <h1 class="text-center">Filme Form</h1>
 
     <div role="form">
-        <div id="tituloDiv" class="form-group">
+        <div id="tituloDiv" class="form-group"
+             ng-class="{true:'has-error',false:''}[erros.titulo!=null]">
             <label for="tituloInput" class="control-label">Titulo </label>
             <input id="tituloInput" type="text" class="form-control" ng-model="filme.titulo">
-            <span id="help-titulo" class="help-block"></span>
+            <span id="help-titulo" class="help-block">{{ erros.titulo }}</span>
         </div>
 
-        <div class="form-group ">
+        <div class="form-group" ng-class="{true:'has-error',false:''}[erros.preco!=null]">
             <label for="precoInput" class="control-label">Preco </label>
             <input id="precoInput" type="text" class="form-control" ng-model="filme.preco">
+            <span id="help-preco" class="help-block">{{ erros.preco }}</span>
         </div>
 
-        <div class="form-group ">
+        <div class="form-group" ng-class="{true:'has-error',false:''}[erros.data!=null]">
             <label for="dataInput" class="control-label">Data </label>
             <input id="dataInput" type="text" class="form-control" ng-model="filme.data">
+            <span id="help-data" class="help-block">{{ erros.data }}</span>
         </div>
 
         <button type="submit" class="btn btn-success" >Salvar</button>
