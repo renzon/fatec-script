@@ -29,6 +29,10 @@
                 $scope.mostrarFormFlag=!$scope.mostrarFormFlag;
             }
 
+            $scope.adicionarFilme=function(filme){
+                $scope.filmes.unshift(filme);
+            }
+
         }
 
     </script>
@@ -42,7 +46,7 @@
                 <button class="btn btn-success" ng-click="mostrarOuEsconderForm()">Criar Novo Filme</button>
 
                 <div>
-                    <filme-form ng-show="mostrarFormFlag"></filme-form>
+                    <filme-form ng-show="mostrarFormFlag" filme-salvo="adicionarFilme(filme)"></filme-form>
                 </div>
                 <hr/>
                 <h2>{% trans %}List of Filmes{% endtrans %}</h2>

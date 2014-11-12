@@ -4,7 +4,7 @@ filmeModulo.directive('filmeForm', [function () {
     return {
         restrict: 'E',
         templateUrl: '/static/filme/html/form.html',
-        scope: {},
+        scope: {filmeSalvo:'&'},
         controller: function ($scope,FilmeAPI) {
             $scope.filme = {titulo: 'Sonho de Liberdade', preco: '45a', data: '02/07/2014'};
             $scope.executandoSalvamento=false;
@@ -16,6 +16,9 @@ filmeModulo.directive('filmeForm', [function () {
                 var promessa = FilmeAPI.salvar($scope.filme);
                 promessa.success(function(filme){
                     $scope.executandoSalvamento=false;
+                    if($scope.filmeSalvo!=null){
+                        $scope.filmeSalvo({'filme':filme})
+                    }
                 });
                 promessa.error(function(erros){
                     $scope.erros=erros;
