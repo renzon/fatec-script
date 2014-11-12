@@ -33,8 +33,8 @@ def update(_resp, filme_id, **filme_properties):
 
 @login_not_required
 @no_csrf
-def delete(filme_id):
-    facade.delete_filme_cmd(filme_id)()
+def delete(id):
+    facade.delete_filme_cmd(id)()
 
 
 def _save_or_update_json_response(_resp, cmd):

@@ -13,6 +13,7 @@ from routes.filmes import admin, rest
 def index():
     context = {
         'salvar_path': router.to_path(rest.save),
+        'deletar_path': router.to_path(rest.delete),
         'listar_path': router.to_path(rest.index)}
     return TemplateResponse(context)
 

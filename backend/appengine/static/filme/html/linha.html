@@ -2,4 +2,11 @@
     <td>{{ filme.titulo }}</td>
     <td>{{ filme.preco }}</td>
     <td>{{ filme.data }}</td>
+    <td>
+        <button class="btn btn-danger" ng-disabled="apagandoFlag"
+                ng-click="deletar()">
+            <i class="glyphicon glyphicon-trash"></i>
+        </button>
+        <img ng-show="apagandoFlag" src="/static/img/ajax.gif" >
+    </td>
 </tr>

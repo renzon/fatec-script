@@ -4,33 +4,40 @@
     <script type="text/javascript" src="/static/filme/js/filme.js"></script>
     <script type="text/javascript">
 
-    var filmeServico = angular.module('filme-servico', []);
+        var filmeServico = angular.module('filme-servico', []);
 
-    filmeServico.factory('FilmeAPI',function($http){
-       return {
-           salvar:function(filme){
-               return $http.post('{{ salvar_path }}',filme);
-           },
-           listar:function(){
-               return $http.post('{{ listar_path }}');
-           }
-       }
-    });
+        filmeServico.factory('FilmeAPI', function ($http) {
+            return {
+                salvar: function (filme) {
+                    return $http.post('{{ salvar_path }}', filme);
+                },
+                listar: function () {
+                    return $http.post('{{ listar_path }}');
+                },
+                deletar: function (id) {
+                    return $http.post('{{ deletar_path }}', {'id': id});
+                }
+            }
+        });
 
         function FilmeControlador($scope, FilmeAPI) {
             $scope.mostrarFormFlag = false;
-            $scope.filmes=[];
+            $scope.filmes = [];
 
-            FilmeAPI.listar().success(function(filmes){
-                $scope.filmes=filmes;
+            FilmeAPI.listar().success(function (filmes) {
+                $scope.filmes = filmes;
             });
 
-            $scope.mostrarOuEsconderForm=function(){
-                $scope.mostrarFormFlag=!$scope.mostrarFormFlag;
+            $scope.mostrarOuEsconderForm = function () {
+                $scope.mostrarFormFlag = !$scope.mostrarFormFlag;
+            };
+
+            $scope.adicionarFilme = function (filme) {
+                $scope.filmes.unshift(filme);
             }
 
-            $scope.adicionarFilme=function(filme){
-                $scope.filmes.unshift(filme);
+            $scope.deletarFilme = function (index) {
+                $scope.filmes.splice(index,1);
             }
 
         }
@@ -59,7 +66,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="f in filmes" filme-linha filme="f" ></tr>
+                    <tr ng-repeat="f in filmes" filme-linha filme="f" filme-deletado="deletarFilme($index)"></tr>
                     </tbody>
                 </table>
             </div>
