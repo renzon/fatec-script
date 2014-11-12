@@ -10,12 +10,20 @@
        return {
            salvar:function(filme){
                return $http.post('{{ salvar_path }}',filme);
+           },
+           listar:function(){
+               return $http.post('{{ listar_path }}');
            }
        }
     });
 
-        function FilmeControlador($scope) {
+        function FilmeControlador($scope, FilmeAPI) {
             $scope.mostrarFormFlag = false;
+            $scope.filmes=[];
+
+            FilmeAPI.listar().success(function(filmes){
+                $scope.filmes=filmes;
+            });
 
             $scope.mostrarOuEsconderForm=function(){
                 $scope.mostrarFormFlag=!$scope.mostrarFormFlag;
@@ -47,13 +55,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for filme in filmes %}
-                        <tr>
-                            <td>{{ filme.titulo }}</td>
-                            <td>{{ filme.preco }}</td>
-                            <td>{{ filme.data }}</td>
-                        </tr>
-                    {% endfor %}
+                        <tr ng-repeat="f in filmes" filme-linha filme="f" ></tr>
                     </tbody>
                 </table>
             </div>

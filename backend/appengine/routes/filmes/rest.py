@@ -14,7 +14,7 @@ def index():
     filme_list = cmd()
     short_form = facade.filme_short_form()
     filme_short = [short_form.fill_with_model(m) for m in filme_list]
-    return JsonUnsecureResponse(filme_short)
+    return JsonResponse(filme_short)
 
 
 @login_not_required

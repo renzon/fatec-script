@@ -11,11 +11,8 @@ from routes.filmes import admin, rest
 @login_not_required
 @no_csrf
 def index():
-    cmd = facade.list_filmes_cmd()
-    filmes = cmd()
-    public_form = facade.filme_public_form()
-    filme_public_dcts = [public_form.fill_with_model(filme) for filme in filmes]
-    context = {'filmes': filme_public_dcts,'admin_path':router.to_path(admin),
-               'salvar_path':router.to_path(rest.save)}
+    context = {
+        'salvar_path': router.to_path(rest.save),
+        'listar_path': router.to_path(rest.index)}
     return TemplateResponse(context)
 

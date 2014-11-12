@@ -5,7 +5,7 @@ filmeModulo.directive('filmeForm', [function () {
         restrict: 'E',
         templateUrl: '/static/filme/html/form.html',
         scope: {},
-        controller: function ($scope, $http,FilmeAPI) {
+        controller: function ($scope,FilmeAPI) {
             $scope.filme = {titulo: 'Sonho de Liberdade', preco: '45a', data: '02/07/2014'};
             $scope.executandoSalvamento=false;
             $scope.erros={};
@@ -22,6 +22,18 @@ filmeModulo.directive('filmeForm', [function () {
                     $scope.executandoSalvamento=false;
                 });
             }
+        }
+    };
+}]);
+
+filmeModulo.directive('filmeLinha', [function () {
+    return {
+        restrict: 'A',
+        replace:true,
+        templateUrl: '/static/filme/html/linha.html',
+        scope: {filme:'='},
+        controller: function ($scope, FilmeAPI) {
+
         }
     };
 }]);
