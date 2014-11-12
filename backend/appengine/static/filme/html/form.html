@@ -9,7 +9,7 @@
             <span id="help-titulo" class="help-block">{{ erros.titulo }}</span>
         </div>
 
-        <div class="form-group" ng-class="{true:'has-error',false:''}[erros.preco!=null]">
+        <div class="form-group" ng-class="{'has-error':erros.preco!=null}">
             <label for="precoInput" class="control-label">Preco </label>
             <input id="precoInput" type="text" class="form-control" ng-model="filme.preco">
             <span id="help-preco" class="help-block">{{ erros.preco }}</span>
