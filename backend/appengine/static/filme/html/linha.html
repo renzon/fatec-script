@@ -1,12 +1,39 @@
 <tr>
-    <td>{{ filme.titulo }}</td>
-    <td>{{ filme.preco }}</td>
-    <td>{{ filme.data }}</td>
+    <td>
+        <button class="btn btn-primary"
+                ng-click="entrarModoEdicao()"
+                ng-hide="editandoFlag">
+            <i class="glyphicon glyphicon-pencil"></i>
+        </button>
+        <div ng-show="editandoFlag" style="width: 150px;">
+            <button class="btn btn-warning"
+                    ng-click="sairModoEdicao()">
+                <i class="glyphicon glyphicon-floppy-remove"></i>
+            </button>
+            <button class="btn btn-success"
+                    ng-click="editar()">
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </button>
+            <img ng-show="apagandoFlag" src="/static/img/ajax.gif">
+        </div>
+    </td>
+    <td>
+        <span ng-hide="editandoFlag">{{ filme.titulo }}</span>
+        <input type="text" ng-show="editandoFlag" ng-model="filmeEdicao.titulo" />
+    </td>
+    <td>
+        <span ng-hide="editandoFlag">{{ filme.preco }}</span>
+        <input type="text" ng-show="editandoFlag" ng-model="filmeEdicao.preco"/>
+    </td>
+    <td>
+        <span ng-hide="editandoFlag">{{ filme.data }}</span>
+        <input type="text" ng-show="editandoFlag" ng-model="filmeEdicao.data"/>
+    </td>
     <td>
         <button class="btn btn-danger" ng-disabled="apagandoFlag"
                 ng-click="deletar()">
             <i class="glyphicon glyphicon-trash"></i>
         </button>
-        <img ng-show="apagandoFlag" src="/static/img/ajax.gif" >
+        <img ng-show="apagandoFlag" src="/static/img/ajax.gif">
     </td>
 </tr>

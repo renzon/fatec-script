@@ -40,14 +40,40 @@ filmeModulo.directive('filmeLinha', [function () {
         },
         controller: function ($scope, FilmeAPI) {
             $scope.apagandoFlag = false;
-
+            $scope.editandoFlag = false;
+            $scope.filmeEdicao={};
             $scope.deletar = function () {
                 $scope.apagandoFlag = true;
                 FilmeAPI.deletar($scope.filme.id).success(function () {
                     $scope.apagandoFlag = false;
-                    if ($scope.filmeDeletado!=null){
+                    if ($scope.filmeDeletado != null) {
                         $scope.filmeDeletado();
                     }
+                });
+            }
+
+            function copiarFilme(origem, destino){
+                destino.id=origem.id;
+                destino.data=origem.data;
+                destino.titulo=origem.titulo;
+                destino.preco=origem.preco;
+
+            }
+
+            $scope.entrarModoEdicao = function () {
+                $scope.editandoFlag = true;
+                copiarFilme($scope.filme, $scope.filmeEdicao);
+            };
+
+            $scope.sairModoEdicao = function () {
+                $scope.editandoFlag = false;
+            };
+
+            $scope.editar=function (){
+                FilmeAPI.editar($scope.filmeEdicao).success(function(filmeServidor){
+                    copiarFilme(filmeServidor,$scope.filme);
+                    $scope.editandoFlag = false;
+
                 });
             }
         }

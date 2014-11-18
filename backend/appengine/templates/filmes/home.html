@@ -11,6 +11,9 @@
                 salvar: function (filme) {
                     return $http.post('{{ salvar_path }}', filme);
                 },
+                editar: function (filme) {
+                    return $http.post('{{ editar_path }}', filme);
+                },
                 listar: function () {
                     return $http.post('{{ listar_path }}');
                 },
@@ -60,6 +63,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
+                        <th ></th>
                         <th>{% trans %}Titulo{% endtrans %}</th>
                         <th>{% trans %}Preco{% endtrans %}</th>
                         <th>{% trans %}Data{% endtrans %}</th>

@@ -26,8 +26,8 @@ def save(_resp, **filme_properties):
 
 @login_not_required
 @no_csrf
-def update(_resp, filme_id, **filme_properties):
-    cmd = facade.update_filme_cmd(filme_id, **filme_properties)
+def update(_resp, id, **filme_properties):
+    cmd = facade.update_filme_cmd(id, **filme_properties)
     return _save_or_update_json_response(_resp, cmd)
 
 
